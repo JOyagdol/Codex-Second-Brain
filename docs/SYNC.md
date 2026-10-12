@@ -10,7 +10,7 @@
 2. 반복 사용할 규칙만 원본에 반영합니다. 연구 상태와 개인 링크는 Notion/개인 설정에 기록합니다. 공통 기억 문서는 7개 스킬에서 일치시킵니다.
 3. validate, audit, 변경에 관련된 테스트를 실행합니다. diff와 공개 범위를 확인합니다.
 4. 작업한 파일만 stage하고 commit/push합니다. 연결된 GitHub 도구로 tree/commit/ref를 갱신하는 방식도 가능합니다. 예상 head를 확인하고 원격이 바뀌면 다시 읽습니다.
-5. ChatGPT Work에서는 원래 설치된 스킬의 ID/name을 유지하고 호스트 skill-creator 지침으로 저장합니다. 해당 호스트의 스킬 Git 저장 성공을 확인합니다. 사용자 GitHub push만으로 ChatGPT 설치가 끝난 것으로 표시하지 않습니다.
+5. ChatGPT Work에서는 원래 설치된 스킬의 ID/name을 유지하고 호스트 skill-creator 지침으로 저장합니다. 여러 스킬은 ID별로 하나씩 commit/push하여 순차 저장합니다. 한 번의 요청 안에서 처리할 수 있지만 설치 저장 push에 여러 스킬을 묶지 않습니다. 해당 호스트의 스킬 Git 저장 성공을 확인합니다. 사용자 GitHub push만으로 ChatGPT 설치가 끝난 것으로 표시하지 않습니다.
 6. Codex PC에서는 clean checkout에서 `sync`를 실행하거나 pull 후 `install`합니다. 설치 파일이 개인적으로 수정되었으면 중단하고 병합합니다. 이미 열린 세션의 스킬 내용이 갱신되었는지는 별도로 확인하고 필요하면 새 세션을 엽니다.
 7. Notion 세션에 원본 commit, 변경 이유, 적용된 환경, 미완료 환경을 남깁니다.
 

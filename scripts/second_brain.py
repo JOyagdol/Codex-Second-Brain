@@ -159,15 +159,15 @@ def install(scope='user', target=None, root=ROOT, home=None, codex=None):
     for path in [*planned, guidance, state_path, *([backup] if backup else []), *([ignore_path] if ignore_path else [])]:
         preflight_shape(path)
     # Preflight all file conflicts before any write. Identical files can be adopted safely.
-    # Exclude personal files before creating them in a target project.
-    if ignore_content is not None:
-        write_atomic(ignore_path, ignore_content)
     for path, data in planned.items():
         if path.is_symlink():
             fail(f'Destination is a symlink; install not changed: {path}')
         if path.exists() and path.read_bytes() != data:
             if digest(path.read_bytes()) != previous.get(str(path)):
                 fail(f'Local/unmanaged change; install not changed: {path}')
+    # Exclude personal files after all preflight checks and before creating them.
+    if ignore_content is not None:
+        write_atomic(ignore_path, ignore_content)
     for path, data in planned.items():
         if not path.exists() or path.read_bytes() != data:
             write_atomic(path, data)

@@ -98,4 +98,10 @@ class InstallSafety(unittest.TestCase):
         result=subprocess.run(['git','-C',str(target),'check-ignore','config/notion.local.json','.second-brain/installed.json'],capture_output=True,text=True,check=True)
         self.assertEqual(len(result.stdout.splitlines()),2)
 
+    def test_project_conflict_preserves_ignore_file(self):
+        target=self.base/'project';p=target/'.agents/skills'/self.name/'SKILL.md'
+        p.parent.mkdir(parents=True);p.write_text('local skill')
+        with self.assertRaises(RuntimeError):sb.install('project',target,root=self.source,home=self.home,codex=self.codex)
+        self.assertFalse((target/'.gitignore').exists())
+
 if __name__=='__main__':unittest.main()
