@@ -1,0 +1,186 @@
+{
+  "layout": {
+    "left_percent": 25,
+    "right_percent": 75,
+    "heading_color": "blue_bg",
+    "menu_color": "blue"
+  },
+  "pages": [
+    {
+      "key": "project",
+      "parent": "root",
+      "title": "프로젝트 관리",
+      "icon": "🏠",
+      "initial_content": "{{project_name}} 프로젝트의 업무, 스프린트, 일정과 진행 상태를 한곳에서 관리합니다.",
+      "final_content": "{{project_name}} 프로젝트의 업무, 스프린트, 일정과 진행 상태를 한곳에서 관리합니다.\n<mention-page url=\"{{record.guide}}\"/>\n<page url=\"{{page.dashboard}}\">Dashboard</page>\n<page url=\"{{page.my_tasks}}\">My Tasks</page>\n<page url=\"{{page.sprint}}\">Sprint</page>\n<page url=\"{{page.timeline}}\">Timeline</page>"
+    },
+    {
+      "key": "dashboard",
+      "parent": "project",
+      "title": "Dashboard",
+      "icon": "📊",
+      "initial_content": "{{project_name}}의 현재 업무와 진행 현황을 요약합니다.\n<callout icon=\"🔗\" color=\"blue_bg\">\n\t모든 View는 DATABASE의 원본 DB와 연결됩니다. 이 페이지에서 수정한 내용은 원본과 즉시 동기화됩니다.\n</callout>",
+      "final_content": "{{project_name}}의 현재 업무와 진행 현황을 요약합니다.\n<callout icon=\"🔗\" color=\"blue_bg\">\n\t모든 View는 DATABASE의 원본 DB와 연결됩니다. 이 페이지에서 수정한 내용은 원본과 즉시 동기화됩니다.\n</callout>\n<database url=\"{{linked.dashboard.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>\n<database url=\"{{linked.dashboard.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>\n<database url=\"{{linked.dashboard.2}}\" inline=\"true\" data-source-url=\"collection://{{ds.Requirements}}\"></database>\n<database url=\"{{linked.dashboard.3}}\" inline=\"true\" data-source-url=\"collection://{{ds.Meetings}}\"></database>\n<database url=\"{{linked.dashboard.4}}\" inline=\"true\" data-source-url=\"collection://{{ds.Sprints}}\"></database>"
+    },
+    {
+      "key": "my_tasks",
+      "parent": "project",
+      "title": "My Tasks",
+      "icon": "🙋",
+      "initial_content": "현재 로그인한 담당자의 미완료 업무를 보여줍니다.",
+      "final_content": "현재 로그인한 담당자의 미완료 업무를 보여줍니다.\n<database url=\"{{linked.my_tasks.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>"
+    },
+    {
+      "key": "sprint",
+      "parent": "project",
+      "title": "Sprint",
+      "icon": "🏃",
+      "initial_content": "스프린트 목표, 기간, 포함 Task와 진행률을 관리합니다.",
+      "final_content": "스프린트 목표, 기간, 포함 Task와 진행률을 관리합니다.\n<database url=\"{{linked.sprint.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Sprints}}\"></database>\n<database url=\"{{linked.sprint.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>"
+    },
+    {
+      "key": "timeline",
+      "parent": "project",
+      "title": "Timeline",
+      "icon": "🗓️",
+      "initial_content": "Task와 Sprint 일정을 시간축으로 확인합니다.",
+      "final_content": "Task와 Sprint 일정을 시간축으로 확인합니다.\n<database url=\"{{linked.timeline.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>"
+    },
+    {
+      "key": "communication",
+      "parent": "root",
+      "title": "커뮤니케이션",
+      "icon": "💬",
+      "initial_content": "회의와 의사결정, 후속 Action Item을 프로젝트 데이터와 연결합니다.",
+      "final_content": "회의와 의사결정, 후속 Action Item을 프로젝트 데이터와 연결합니다.\n<page url=\"{{page.meetings}}\">회의록</page>"
+    },
+    {
+      "key": "meetings",
+      "parent": "communication",
+      "title": "회의록",
+      "icon": "📝",
+      "initial_content": "<callout icon=\"✅\" color=\"yellow_bg\">\n\t회의 중 결정된 요구사항과 Action Item은 각각 Requirements와 Tasks에 연결해 주세요.\n</callout>\n## 기본 작성 구조\n- Agenda\n- 논의 내용\n- 결정 사항\n- Action Items\n- 관련 요구사항\n- 참고 자료",
+      "final_content": "<callout icon=\"✅\" color=\"yellow_bg\">\n\t회의 중 결정된 요구사항과 Action Item은 각각 Requirements와 Tasks에 연결해 주세요.\n</callout>\n## 기본 작성 구조\n- Agenda\n- 논의 내용\n- 결정 사항\n- Action Items\n- 관련 요구사항\n- 참고 자료\n<database url=\"{{linked.meetings.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Meetings}}\"></database>\n<database url=\"{{linked.meetings.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Meetings}}\"></database>"
+    },
+    {
+      "key": "planning",
+      "parent": "root",
+      "title": "기획",
+      "icon": "📋",
+      "initial_content": "아이디어와 요구사항을 검토하고 실제 개발 Task까지 추적합니다.",
+      "final_content": "아이디어와 요구사항을 검토하고 실제 개발 Task까지 추적합니다.\n<page url=\"{{page.requirements}}\">아이디어 + 요구사항 명세</page>\n<page url=\"{{page.ai}}\">AI 프롬프트 / 스킬</page>"
+    },
+    {
+      "key": "requirements",
+      "parent": "planning",
+      "title": "아이디어 + 요구사항 명세",
+      "icon": "💡",
+      "initial_content": "아이디어를 검토하고 승인된 요구사항을 실제 개발 Task로 연결합니다.\n> 권장 흐름: Idea → Review → Approved → In Development → Implemented",
+      "final_content": "아이디어를 검토하고 승인된 요구사항을 실제 개발 Task로 연결합니다.\n> 권장 흐름: Idea → Review → Approved → In Development → Implemented\n<database url=\"{{linked.requirements.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Requirements}}\"></database>\n<database url=\"{{linked.requirements.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Requirements}}\"></database>"
+    },
+    {
+      "key": "ai",
+      "parent": "planning",
+      "title": "AI 프롬프트 / 스킬",
+      "icon": "🤖",
+      "initial_content": "프로젝트가 생산한 프롬프트와 AI Skill 문서를 Documents DB에서 통합 관리합니다.",
+      "final_content": "프로젝트가 생산한 프롬프트와 AI Skill 문서를 Documents DB에서 통합 관리합니다.\n<database url=\"{{linked.ai.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Documents}}\"></database>"
+    },
+    {
+      "key": "development",
+      "parent": "root",
+      "title": "개발",
+      "icon": "💻",
+      "initial_content": "프론트엔드·백엔드 업무와 프로젝트 공식 개발 문서를 관리합니다.",
+      "final_content": "프론트엔드·백엔드 업무와 프로젝트 공식 개발 문서를 관리합니다.\n<page url=\"{{page.frontend}}\">프론트엔드</page>\n<page url=\"{{page.backend}}\">백엔드</page>\n<page url=\"{{page.dev_docs}}\">개발 문서</page>"
+    },
+    {
+      "key": "frontend",
+      "parent": "development",
+      "title": "프론트엔드",
+      "icon": "🖥️",
+      "initial_content": "프론트엔드 영역의 Task, 요구사항과 공식 문서를 함께 확인합니다.",
+      "final_content": "프론트엔드 영역의 Task, 요구사항과 공식 문서를 함께 확인합니다.\n<database url=\"{{linked.frontend.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>\n<database url=\"{{linked.frontend.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Requirements}}\"></database>\n<database url=\"{{linked.frontend.2}}\" inline=\"true\" data-source-url=\"collection://{{ds.Documents}}\"></database>"
+    },
+    {
+      "key": "backend",
+      "parent": "development",
+      "title": "백엔드",
+      "icon": "⚙️",
+      "initial_content": "백엔드 영역의 Task, 요구사항과 공식 문서를 함께 확인합니다.",
+      "final_content": "백엔드 영역의 Task, 요구사항과 공식 문서를 함께 확인합니다.\n<database url=\"{{linked.backend.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>\n<database url=\"{{linked.backend.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Requirements}}\"></database>\n<database url=\"{{linked.backend.2}}\" inline=\"true\" data-source-url=\"collection://{{ds.Documents}}\"></database>"
+    },
+    {
+      "key": "dev_docs",
+      "parent": "development",
+      "title": "개발 문서",
+      "icon": "📑",
+      "initial_content": "프로젝트가 직접 생산하고 유지하는 공식 개발 문서입니다.\n<callout icon=\"📌\" color=\"blue_bg\">\n\tArchitecture · API · Database · QA · Version Control · Deployment · Infrastructure 문서를 동일한 Documents DB에서 관리합니다.\n</callout>",
+      "final_content": "프로젝트가 직접 생산하고 유지하는 공식 개발 문서입니다.\n<callout icon=\"📌\" color=\"blue_bg\">\n\tArchitecture · API · Database · QA · Version Control · Deployment · Infrastructure 문서를 동일한 Documents DB에서 관리합니다.\n</callout>\n<database url=\"{{linked.dev_docs.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Documents}}\"></database>\n<database url=\"{{linked.dev_docs.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Documents}}\"></database>"
+    },
+    {
+      "key": "design",
+      "parent": "root",
+      "title": "디자인",
+      "icon": "🎨",
+      "initial_content": "Figma 등 디자인 작업공간과 디자인 관련 업무를 연결합니다.",
+      "final_content": "Figma 등 디자인 작업공간과 디자인 관련 업무를 연결합니다.\n<page url=\"{{page.figma}}\">Figma</page>"
+    },
+    {
+      "key": "figma",
+      "parent": "design",
+      "title": "Figma",
+      "icon": "🎨",
+      "initial_content": "Figma 바로가기와 관련 디자인 Task·문서를 연결합니다.",
+      "final_content": "Figma 바로가기와 관련 디자인 Task·문서를 연결합니다.\n<database url=\"{{linked.figma.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Resources}}\"></database>\n<database url=\"{{linked.figma.1}}\" inline=\"true\" data-source-url=\"collection://{{ds.Tasks}}\"></database>"
+    },
+    {
+      "key": "resources",
+      "parent": "root",
+      "title": "자료",
+      "icon": "📚",
+      "initial_content": "프로젝트 바로가기와 외부 참고·학습 자료를 관리합니다.",
+      "final_content": "프로젝트 바로가기와 외부 참고·학습 자료를 관리합니다.\n<page url=\"{{page.shortcuts}}\">바로가기</page>\n<page url=\"{{page.dev_resources}}\">개발 자료</page>\n<page url=\"{{page.business_resources}}\">경영 자료</page>\n<page url=\"{{page.learning}}\">학습 자료</page>"
+    },
+    {
+      "key": "shortcuts",
+      "parent": "resources",
+      "title": "바로가기",
+      "icon": "⭐",
+      "initial_content": "GitHub, Figma, Swagger, ERD 등 프로젝트의 상시 접근 링크를 모아봅니다.",
+      "final_content": "GitHub, Figma, Swagger, ERD 등 프로젝트의 상시 접근 링크를 모아봅니다.\n<database url=\"{{linked.shortcuts.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Resources}}\"></database>"
+    },
+    {
+      "key": "dev_resources",
+      "parent": "resources",
+      "title": "개발 자료",
+      "icon": "🧩",
+      "initial_content": "개발 과정에서 참고하거나 공부한 외부 자료를 정리합니다.",
+      "final_content": "개발 과정에서 참고하거나 공부한 외부 자료를 정리합니다.\n<database url=\"{{linked.dev_resources.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Resources}}\"></database>"
+    },
+    {
+      "key": "business_resources",
+      "parent": "resources",
+      "title": "경영 자료",
+      "icon": "💼",
+      "initial_content": "사업계획서 작성과 프로젝트 운영에 참고한 외부 자료를 정리합니다.",
+      "final_content": "사업계획서 작성과 프로젝트 운영에 참고한 외부 자료를 정리합니다.\n<database url=\"{{linked.business_resources.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Resources}}\"></database>"
+    },
+    {
+      "key": "learning",
+      "parent": "resources",
+      "title": "학습 자료",
+      "icon": "🧠",
+      "initial_content": "읽거나 수강할 자료의 상태를 To Read → Reading → Reviewed로 관리합니다.\n<empty-block/>",
+      "final_content": "읽거나 수강할 자료의 상태를 To Read → Reading → Reviewed로 관리합니다.\n<database url=\"{{linked.learning.0}}\" inline=\"true\" data-source-url=\"collection://{{ds.Resources}}\"></database>\n<empty-block/>"
+    },
+    {
+      "key": "database",
+      "parent": "root",
+      "title": "DATABASE",
+      "icon": "🗄️",
+      "initial_content": "원본 데이터베이스를 보관합니다. 각 업무 페이지에서는 이 DB들의 필터링된 연결 View만 사용합니다.",
+      "final_content": "원본 데이터베이스를 보관합니다. 각 업무 페이지에서는 이 DB들의 필터링된 연결 View만 사용합니다.\n<database url=\"{{db.Tasks}}\" inline=\"false\" data-source-url=\"collection://{{ds.Tasks}}\">Tasks</database>\n<database url=\"{{db.Sprints}}\" inline=\"false\" data-source-url=\"collection://{{ds.Sprints}}\">Sprints</database>\n<database url=\"{{db.Projects}}\" inline=\"false\" data-source-url=\"collection://{{ds.Projects}}\">Projects</database>\n<database url=\"{{db.Requirements}}\" inline=\"false\" data-source-url=\"collection://{{ds.Requirements}}\">Requirements</database>\n<database url=\"{{db.Resources}}\" inline=\"false\" data-source-url=\"collection://{{ds.Resources}}\">Resources</database>\n<database url=\"{{db.Meetings}}\" inline=\"false\" data-source-url=\"collection://{{ds.Meetings}}\">Meetings</database>\n<database url=\"{{db.Documents}}\" inline=\"false\" data-source-url=\"collection://{{ds.Documents}}\">Documents</database>"
+    }
+  ]
+}

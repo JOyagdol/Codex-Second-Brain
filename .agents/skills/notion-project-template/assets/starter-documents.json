@@ -1,0 +1,147 @@
+{
+  "seeds": [
+    {
+      "key": "architecture",
+      "database": "Documents",
+      "properties": {
+        "Document": "시스템 아키텍처",
+        "Category": "Architecture",
+        "Area": [
+          "General"
+        ],
+        "Status": "Draft",
+        "Version": "v0.1",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📄",
+      "content": "<callout icon=\"📝\" color=\"yellow_bg\">\n\t초기 구조 템플릿입니다. 실제 기술 스택과 배포 구성이 확정되면 갱신합니다.\n</callout>\n## 목적과 범위\n- 시스템이 해결하는 문제\n- 주요 사용자와 사용 시나리오\n- 문서가 다루는 범위 / 제외 범위\n## System Context\n- Client\n- Frontend\n- Backend\n- Database\n- External Services\n## 주요 컴포넌트\n<table fit-page-width=\"true\" header-row=\"true\">\n<tr>\n<td>컴포넌트</td>\n<td>책임</td>\n<td>기술</td>\n<td>상태</td>\n</tr>\n<tr>\n<td>Frontend</td>\n<td>TBD</td>\n<td>TBD</td>\n<td>Draft</td>\n</tr>\n<tr>\n<td>Backend</td>\n<td>TBD</td>\n<td>TBD</td>\n<td>Draft</td>\n</tr>\n<tr>\n<td>Database</td>\n<td>TBD</td>\n<td>TBD</td>\n<td>Draft</td>\n</tr>\n</table>\n## 데이터 흐름\n- 핵심 요청·응답 흐름\n- 비동기 처리 및 외부 연동\n## Architecture Decisions\n- 결정 내용 / 근거 / 영향 / 날짜\n## 변경 이력\n- v0.1 — 문서 구조 생성"
+    },
+    {
+      "key": "api_database",
+      "database": "Documents",
+      "properties": {
+        "Document": "API 및 데이터베이스 가이드",
+        "Category": "API",
+        "Area": [
+          "Backend",
+          "Database"
+        ],
+        "Status": "Draft",
+        "Version": "v0.1",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "🔌",
+      "content": "## API 원칙\n- Base URL 및 버전 정책: TBD\n- 인증·인가 방식: TBD\n- 요청·응답 포맷: JSON\n- 오류 응답 규칙과 공통 Error Code: TBD\n## Endpoint 작성 규칙\n<table fit-page-width=\"true\" header-row=\"true\">\n<tr>\n<td>항목</td>\n<td>규칙</td>\n</tr>\n<tr>\n<td>Resource naming</td>\n<td>TBD</td>\n</tr>\n<tr>\n<td>Pagination</td>\n<td>TBD</td>\n</tr>\n<tr>\n<td>Validation</td>\n<td>TBD</td>\n</tr>\n</table>\n## Database 원칙\n- Schema naming convention\n- PK / FK / Index 기준\n- Migration 작성 및 적용 순서\n- Seed와 테스트 데이터 관리\n## 변경 호환성\n- Breaking change 판단 기준\n- API·Schema migration 및 rollback 절차"
+    },
+    {
+      "key": "qa",
+      "database": "Documents",
+      "properties": {
+        "Document": "QA 및 테스트 체계",
+        "Category": "QA",
+        "Area": [
+          "General"
+        ],
+        "Status": "Draft",
+        "Version": "v0.1",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📄",
+      "content": "## 목적\n기능 요구사항이 구현 결과와 일치하는지 검증하고, 결함을 재현 가능하게 관리합니다.\n## 테스트 레벨\n- Unit Test\n- Integration Test\n- API Test\n- E2E Test\n- Acceptance Test\n## QA Workflow\n1. 요구사항과 Acceptance Criteria 확인\n2. Test Case 작성 및 관련 Requirement 연결\n3. 개발 완료 후 자체 검증\n4. Review 환경 QA\n5. 결함 Task 등록·재검증\n6. Release Checklist 승인\n## 결함 우선순위\n<table fit-page-width=\"true\" header-row=\"true\">\n<tr>\n<td>등급</td>\n<td>기준</td>\n<td>대응</td>\n</tr>\n<tr>\n<td>Critical</td>\n<td>서비스 사용 불가·데이터 손상</td>\n<td>즉시 차단 및 수정</td>\n</tr>\n<tr>\n<td>High</td>\n<td>핵심 기능 장애</td>\n<td>릴리즈 전 수정</td>\n</tr>\n<tr>\n<td>Medium</td>\n<td>대체 경로가 있는 기능 오류</td>\n<td>우선순위에 따라 수정</td>\n</tr>\n<tr>\n<td>Low</td>\n<td>경미한 UI·문구 문제</td>\n<td>Backlog 관리</td>\n</tr>\n</table>\n## Release Checklist\n- [ ] 승인된 요구사항 충족\n- [ ] Critical / High Bug 없음\n- [ ] 자동 테스트 통과\n- [ ] Migration 검증\n- [ ] 배포 및 Rollback 절차 확인\n- [ ] 릴리즈 노트 작성"
+    },
+    {
+      "key": "version_control",
+      "database": "Documents",
+      "properties": {
+        "Document": "버전 관리 체계",
+        "Category": "Version Control",
+        "Area": [
+          "General"
+        ],
+        "Status": "Draft",
+        "Version": "v0.1",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📄",
+      "content": "<callout icon=\"⚠️\" color=\"yellow_bg\">\n\t아래 규칙은 팀 합의 전 초안입니다. 실제 Repository 운영 방식에 맞춰 확정하세요.\n</callout>\n## Branch Strategy\n- `main`: 배포 가능한 안정 버전\n- `develop`: 다음 릴리즈 통합\n- `feature/*`: 기능 개발\n- `fix/*`: 일반 결함 수정\n- `hotfix/*`: 운영 긴급 수정\n## Commit Convention\n- `feat`: 기능 추가\n- `fix`: 버그 수정\n- `docs`: 문서 변경\n- `refactor`: 동작 변경 없는 구조 개선\n- `test`: 테스트 추가·수정\n- `chore`: 설정·도구 변경\n## Pull Request\n- 관련 Task와 Requirement 연결\n- 변경 목적·검증 방법·영향 범위 작성\n- 최소 Review 기준: TBD\n- CI 통과 후 병합\n## Version & Release\n- 버전 정책: TBD\n- Tag 규칙: TBD\n- Release Note와 배포 기록 연결"
+    },
+    {
+      "key": "deployment",
+      "database": "Documents",
+      "properties": {
+        "Document": "배포 체계",
+        "Category": "Deployment",
+        "Area": [
+          "Infra",
+          "Backend",
+          "Frontend"
+        ],
+        "Status": "Draft",
+        "Version": "v0.1",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📄",
+      "content": "## 환경 구분\n<table fit-page-width=\"true\" header-row=\"true\">\n<tr>\n<td>환경</td>\n<td>목적</td>\n<td>승인 기준</td>\n</tr>\n<tr>\n<td>Development</td>\n<td>개발·통합 확인</td>\n<td>TBD</td>\n</tr>\n<tr>\n<td>Staging</td>\n<td>운영 전 QA</td>\n<td>QA Checklist 통과</td>\n</tr>\n<tr>\n<td>Production</td>\n<td>실서비스</td>\n<td>Release 승인</td>\n</tr>\n</table>\n## CI/CD Pipeline\n1. Pull Request 생성\n2. Lint / Test / Build\n3. Review 및 병합\n4. Staging 배포·검증\n5. Production 승인·배포\n6. 모니터링 및 결과 기록\n## Configuration & Secrets\n- 환경별 설정 분리\n- Secret의 Repository 저장 금지\n- 권한과 교체 주기: TBD\n## Rollback\n- Rollback 조건\n- 직전 안정 버전 복구 절차\n- Database migration 복구 기준\n- 장애 기록과 후속 Task 연결\n## 배포 체크리스트\n- [ ] QA 승인\n- [ ] 환경 변수 확인\n- [ ] Migration 백업·검증\n- [ ] Rollback 가능 여부 확인\n- [ ] 배포 후 Smoke Test\n- [ ] 릴리즈 기록 갱신"
+    },
+    {
+      "key": "requirements",
+      "database": "Documents",
+      "properties": {
+        "Document": "요구사항 관리 가이드",
+        "Category": "Requirement Spec",
+        "Area": [
+          "Planning"
+        ],
+        "Status": "Draft",
+        "Version": "v0.1",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📄",
+      "content": "## 작성 원칙\n- 한 Requirement에는 하나의 검증 가능한 요구를 작성합니다.\n- 사용자·시스템·비즈니스 관점과 완료 조건을 명확히 구분합니다.\n- 구현 활동은 Requirement가 아니라 관련 Tasks에 나눠 등록합니다.\n## 권장 본문\n### Background\n왜 필요한가?\n### Requirement\n무엇을 만족해야 하는가?\n### Acceptance Criteria\n- [ ] 검증 가능한 조건 1\n- [ ] 검증 가능한 조건 2\n### Constraints\n보안·성능·호환성 등 제약\n### Related Work\n관련 Task, Meeting, Document와 참고 자료 연결\n## Lifecycle\nIdea → Review → Approved → In Development → Implemented"
+    },
+    {
+      "key": "meeting_template",
+      "database": "Meetings",
+      "properties": {
+        "Meeting": "회의록 템플릿 — 복제하여 사용",
+        "Type": "Template",
+        "Summary": "Agenda, 논의 내용, 결정 사항과 Action Items를 연결하기 위한 기본 템플릿",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📝",
+      "content": "- 일시:\n- 참석자:\n- 목적:\n## Agenda\n-\n## 논의 내용\n-\n## 결정 사항\n- [ ] 결정 내용과 근거 기록\n## Action Items\n- [ ] Tasks DB에 생성 후 이 회의의 `Action Items`로 연결\n## 관련 요구사항\n- Requirements DB의 관련 항목 연결\n## 참고 자료\n- Documents / Resources 연결"
+    },
+    {
+      "key": "guide",
+      "database": "Documents",
+      "properties": {
+        "Document": "{{project_name}} 프로젝트 운영 가이드",
+        "Category": "Guide",
+        "Area": [
+          "General"
+        ],
+        "Status": "Draft",
+        "Version": "v1.0",
+        "Project": [
+          "{{record.project}}"
+        ]
+      },
+      "icon": "📘",
+      "content": "<callout icon=\"🚀\" color=\"blue_bg\">\n\t**{{project_name}} Project Hub** — 문서 허브와 Jira형 프로젝트 관리 보드를 하나의 관계형 구조로 운영합니다.\n</callout>\n## 프로젝트 오버뷰\n<callout icon=\"🟢\" color=\"green_bg\">\n\t프로젝트 상태는 <mention-page url=\"{{record.project}}\"/>에서 관리하며, 연결 View에서 수정한 내용은 같은 원본 DB에 반영됩니다.\n</callout>\n<table fit-page-width=\"true\" header-row=\"true\">\n<tr>\n<td>관리 항목</td>\n<td>원본 DB</td>\n<td>운영 기준</td>\n</tr>\n<tr>\n<td>실행 업무</td>\n<td>Tasks</td>\n<td>Backlog → Todo → In Progress → Review → Done</td>\n</tr>\n<tr>\n<td>기획 추적</td>\n<td>Requirements</td>\n<td>하나의 요구사항을 여러 Task와 연결</td>\n</tr>\n<tr>\n<td>공식 지식</td>\n<td>Documents</td>\n<td>QA·버전 관리·배포 포함</td>\n</tr>\n<tr>\n<td>참고·학습</td>\n<td>Resources</td>\n<td>Workspace / Reference / Learning 구분</td>\n</tr>\n</table>\n<callout icon=\"🔁\" color=\"yellow_bg\">\n\t**권장 흐름** · Idea → Requirement → Meeting → Task → Sprint → Review → Done\n</callout>\n## Notion 시스템 운영 원칙\n- 메인 페이지의 왼쪽은 메뉴, 오른쪽은 프로젝트 보드로 사용합니다.\n- 오버뷰와 시스템 설명은 이 가이드에서 관리합니다.\n- 데이터는 DATABASE 아래 7개 원본 DB에 저장합니다. 각 메뉴는 같은 DB를 필터링해서 보여주는 연결 View입니다.\n- 프론트엔드·백엔드 업무는 Tasks DB에서 Area로 구분하며, 별도 업무 DB로 복제하지 않습니다.\n- Documents는 프로젝트가 작성한 공식 문서, Resources는 상시 서비스 링크와 외부 참고·학습 자료를 관리합니다.\n- 외부 자료에서 도출한 내부 결정은 Documents로 정리하고, 관련 Requirement·Task·Meeting을 Relation으로 연결합니다.\n## 원본 DB 역할\n<table fit-page-width=\"true\" header-row=\"true\">\n<tr>\n<td>DB</td>\n<td>관리 대상</td>\n</tr>\n<tr>\n<td>Projects</td>\n<td>프로젝트 최상위 기준과 진행 현황</td>\n</tr>\n<tr>\n<td>Tasks</td>\n<td>개발·기획·디자인 등 실제 실행 업무</td>\n</tr>\n<tr>\n<td>Sprints</td>\n<td>개발 주기, 기간, 목표와 포함 업무</td>\n</tr>\n<tr>\n<td>Requirements</td>\n<td>아이디어와 검증 가능한 요구사항</td>\n</tr>\n<tr>\n<td>Meetings</td>\n<td>논의·결정 사항과 Action Items</td>\n</tr>\n<tr>\n<td>Documents</td>\n<td>기획·개발·QA·버전 관리·배포 등 내부 공식 문서</td>\n</tr>\n<tr>\n<td>Resources</td>\n<td>Workspace / Reference / Learning 자료</td>\n</tr>\n</table>\n## 업무 연결과 진행률\n- 회의에서 나온 실행 항목은 Tasks에 등록하고 Origin Meeting으로 연결합니다.\n- 하나의 Requirement에 여러 Task를 연결해 구현 범위를 추적합니다.\n- Task에 Project·Sprint·관련 문서·참고 자료를 연결하면 양방향 Relation에서 함께 확인할 수 있습니다.\n- Project와 Sprint의 Progress는 연결된 Task 중 Status가 Done인 비율입니다.\n- Kanban에서 카드를 이동하면 해당 Task의 Status가 바뀝니다. 일정은 Start Date·Due Date에서 관리하며, 날짜 변경 시 Timeline에 반영됩니다.\n## 위치와 변경 이력\n- 메인 허브: <mention-page url=\"{{page.root}}\">{{project_name}}</mention-page>\n- 원본 DB: <mention-page url=\"{{page.database}}\">DATABASE</mention-page>\n- 문서 분류: Documents → Category = Guide / Area = General\n- v1.0 — 프로젝트 운영 가이드 생성."
+    }
+  ]
+}

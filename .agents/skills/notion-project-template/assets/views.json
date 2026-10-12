@@ -1,0 +1,236 @@
+{
+  "views": [
+    {
+      "key": "root.0",
+      "page": "root",
+      "database": "Tasks",
+      "name": "{{project_name}} 프로젝트 보드",
+      "type": "board",
+      "configure": "FILTER \"Project\" = \"{{record.project}}\"; GROUP BY \"Status\"; SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Priority\", \"Type\", \"Area\", \"Assignee\", \"Sprint\", \"Due Date\""
+    },
+    {
+      "key": "dashboard.0",
+      "page": "dashboard",
+      "database": "Tasks",
+      "name": "업무 보드",
+      "type": "board",
+      "configure": "FILTER \"Project\" = \"{{record.project}}\"; GROUP BY \"Status\"; SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Priority\", \"Type\", \"Area\", \"Assignee\", \"Sprint\", \"Due Date\""
+    },
+    {
+      "key": "dashboard.1",
+      "page": "dashboard",
+      "database": "Tasks",
+      "name": "Critical · High",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND ((\"Priority\" = \"Critical\" OR \"Priority\" = \"High\") AND \"Status\" != \"Done\")); SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Status\", \"Priority\", \"Assignee\", \"Due Date\", \"Requirement\""
+    },
+    {
+      "key": "dashboard.2",
+      "page": "dashboard",
+      "database": "Requirements",
+      "name": "요구사항 현황",
+      "type": "board",
+      "configure": "FILTER \"Project\" = \"{{record.project}}\"; GROUP BY \"Status\"; SHOW \"Requirement\", \"ID\", \"Priority\", \"Area\", \"Owner\", \"Task Count\""
+    },
+    {
+      "key": "dashboard.3",
+      "page": "dashboard",
+      "database": "Meetings",
+      "name": "최근 회의",
+      "type": "list",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Type\" != \"Template\"); SORT BY \"Date\" DESC; SHOW \"Meeting\", \"Date\", \"Type\", \"Summary\", \"Action Count\""
+    },
+    {
+      "key": "dashboard.4",
+      "page": "dashboard",
+      "database": "Sprints",
+      "name": "Sprint 일정",
+      "type": "timeline",
+      "configure": "FILTER \"Project\" = \"{{record.project}}\"; SORT BY \"Start\" ASC; TIMELINE BY \"Start\" TO \"End\"; SHOW \"Sprint\", \"Status\", \"Goal\", \"Progress\", \"Task Count\""
+    },
+    {
+      "key": "my_tasks.0",
+      "page": "my_tasks",
+      "database": "Tasks",
+      "name": "내 업무",
+      "type": "board",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Assignee\" = \"me\" AND \"Status\" != \"Done\"); GROUP BY \"Status\"; SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Priority\", \"Area\", \"Sprint\", \"Due Date\""
+    },
+    {
+      "key": "sprint.0",
+      "page": "sprint",
+      "database": "Sprints",
+      "name": "Sprint 목록",
+      "type": "timeline",
+      "configure": "FILTER \"Project\" = \"{{record.project}}\"; SORT BY \"Start\" ASC; TIMELINE BY \"Start\" TO \"End\"; SHOW \"Sprint\", \"Status\", \"Goal\", \"Progress\", \"Task Count\""
+    },
+    {
+      "key": "sprint.1",
+      "page": "sprint",
+      "database": "Tasks",
+      "name": "Sprint Tasks",
+      "type": "board",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Sprint\" IS NOT EMPTY); GROUP BY \"Status\"; SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Sprint\", \"Priority\", \"Assignee\", \"Due Date\""
+    },
+    {
+      "key": "timeline.0",
+      "page": "timeline",
+      "database": "Tasks",
+      "name": "Task Timeline",
+      "type": "timeline",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Status\" != \"Done\"); TIMELINE BY \"Start Date\" TO \"Due Date\"; SHOW \"Task\", \"Status\", \"Priority\", \"Area\", \"Assignee\", \"Sprint\""
+    },
+    {
+      "key": "meetings.0",
+      "page": "meetings",
+      "database": "Meetings",
+      "name": "회의 기록",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Type\" != \"Template\"); SORT BY \"Date\" DESC; SHOW \"Meeting\", \"Date\", \"Type\", \"Participants\", \"Summary\", \"Requirements\", \"Action Items\", \"Documents\""
+    },
+    {
+      "key": "meetings.1",
+      "page": "meetings",
+      "database": "Meetings",
+      "name": "회의록 템플릿",
+      "type": "list",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Type\" = \"Template\"); SHOW \"Meeting\", \"Summary\""
+    },
+    {
+      "key": "requirements.0",
+      "page": "requirements",
+      "database": "Requirements",
+      "name": "요구사항 Lifecycle",
+      "type": "board",
+      "configure": "FILTER \"Project\" = \"{{record.project}}\"; GROUP BY \"Status\"; SHOW \"Requirement\", \"ID\", \"Type\", \"Priority\", \"Area\", \"Owner\", \"Task Count\""
+    },
+    {
+      "key": "requirements.1",
+      "page": "requirements",
+      "database": "Requirements",
+      "name": "아이디어 Inbox",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Type\" = \"Idea\"); SORT BY \"Created\" DESC; SHOW \"Requirement\", \"ID\", \"Status\", \"Priority\", \"Area\", \"Owner\""
+    },
+    {
+      "key": "ai.0",
+      "page": "ai",
+      "database": "Documents",
+      "name": "AI 프롬프트 · 스킬",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND (\"Category\" = \"AI Prompt\" OR \"Category\" = \"AI Skill\")); SORT BY \"Last Updated\" DESC; SHOW \"Document\", \"ID\", \"Category\", \"Status\", \"Owner\", \"Version\", \"Last Updated\""
+    },
+    {
+      "key": "frontend.0",
+      "page": "frontend",
+      "database": "Tasks",
+      "name": "Frontend Tasks",
+      "type": "board",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Frontend\"); GROUP BY \"Status\"; SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Priority\", \"Type\", \"Assignee\", \"Sprint\", \"Due Date\""
+    },
+    {
+      "key": "frontend.1",
+      "page": "frontend",
+      "database": "Requirements",
+      "name": "Frontend Requirements",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Frontend\"); SORT BY \"Priority\" ASC; SHOW \"Requirement\", \"ID\", \"Status\", \"Priority\", \"Owner\", \"Task Count\""
+    },
+    {
+      "key": "frontend.2",
+      "page": "frontend",
+      "database": "Documents",
+      "name": "Frontend Documents",
+      "type": "list",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Frontend\"); SORT BY \"Last Updated\" DESC; SHOW \"Document\", \"Category\", \"Status\", \"Version\""
+    },
+    {
+      "key": "backend.0",
+      "page": "backend",
+      "database": "Tasks",
+      "name": "Backend Tasks",
+      "type": "board",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Backend\"); GROUP BY \"Status\"; SORT BY \"Due Date\" ASC; SHOW \"Task\", \"Priority\", \"Type\", \"Assignee\", \"Sprint\", \"Due Date\""
+    },
+    {
+      "key": "backend.1",
+      "page": "backend",
+      "database": "Requirements",
+      "name": "Backend Requirements",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Backend\"); SORT BY \"Priority\" ASC; SHOW \"Requirement\", \"ID\", \"Status\", \"Priority\", \"Owner\", \"Task Count\""
+    },
+    {
+      "key": "backend.2",
+      "page": "backend",
+      "database": "Documents",
+      "name": "Backend Documents",
+      "type": "list",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Backend\"); SORT BY \"Last Updated\" DESC; SHOW \"Document\", \"Category\", \"Status\", \"Version\""
+    },
+    {
+      "key": "dev_docs.0",
+      "page": "dev_docs",
+      "database": "Documents",
+      "name": "전체 개발 문서",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND (\"Category\" = \"Architecture\" OR \"Category\" = \"Frontend\" OR \"Category\" = \"Backend\" OR \"Category\" = \"Database\" OR \"Category\" = \"API\" OR \"Category\" = \"QA\" OR \"Category\" = \"Version Control\" OR \"Category\" = \"Deployment\" OR \"Category\" = \"Infrastructure\")); SORT BY \"Last Updated\" DESC; SHOW \"Document\", \"ID\", \"Category\", \"Area\", \"Status\", \"Owner\", \"Version\", \"Task Count\", \"Reference Count\", \"Last Updated\""
+    },
+    {
+      "key": "dev_docs.1",
+      "page": "dev_docs",
+      "database": "Documents",
+      "name": "QA · 버전 관리 · 배포",
+      "type": "list",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND (\"Category\" = \"QA\" OR \"Category\" = \"Version Control\" OR \"Category\" = \"Deployment\")); SHOW \"Document\", \"Category\", \"Status\", \"Version\", \"Owner\""
+    },
+    {
+      "key": "figma.0",
+      "page": "figma",
+      "database": "Resources",
+      "name": "Figma Workspace",
+      "type": "gallery",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Type\" = \"Figma\"); FILTER \"Role\" = \"Workspace\"; SHOW \"Resource\", \"URL\", \"Status\", \"Area\""
+    },
+    {
+      "key": "figma.1",
+      "page": "figma",
+      "database": "Tasks",
+      "name": "Design Tasks",
+      "type": "board",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Design\"); GROUP BY \"Status\"; SHOW \"Task\", \"Priority\", \"Assignee\", \"Sprint\", \"Due Date\""
+    },
+    {
+      "key": "shortcuts.0",
+      "page": "shortcuts",
+      "database": "Resources",
+      "name": "프로젝트 바로가기",
+      "type": "gallery",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Role\" = \"Workspace\"); SHOW \"Resource\", \"Type\", \"URL\", \"Status\", \"Area\""
+    },
+    {
+      "key": "dev_resources.0",
+      "page": "dev_resources",
+      "database": "Resources",
+      "name": "개발 참고 · 학습 자료",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND (\"Role\" = \"Reference\" OR \"Role\" = \"Learning\") AND (\"Area\" = \"Frontend\" OR \"Area\" = \"Backend\" OR \"Area\" = \"Database\" OR \"Area\" = \"AI\" OR \"Area\" = \"DevOps\" OR \"Area\" = \"General\")); SORT BY \"Last Updated\" DESC; SHOW \"Resource\", \"Role\", \"Type\", \"Area\", \"Topic\", \"Status\", \"URL\", \"Summary\""
+    },
+    {
+      "key": "business_resources.0",
+      "page": "business_resources",
+      "database": "Resources",
+      "name": "경영 참고 자료",
+      "type": "table",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Area\" = \"Business\"); FILTER \"Role\" IN (\"Reference\", \"Learning\"); SORT BY \"Last Updated\" DESC; SHOW \"Resource\", \"Role\", \"Type\", \"Topic\", \"Status\", \"URL\", \"Summary\""
+    },
+    {
+      "key": "learning.0",
+      "page": "learning",
+      "database": "Resources",
+      "name": "학습 보드",
+      "type": "board",
+      "configure": "FILTER (\"Project\" = \"{{record.project}}\" AND \"Role\" = \"Learning\"); GROUP BY \"Status\"; SHOW \"Resource\", \"Type\", \"Area\", \"Topic\", \"URL\""
+    }
+  ]
+}

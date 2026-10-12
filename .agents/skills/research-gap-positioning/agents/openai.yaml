@@ -1,0 +1,14 @@
+interface:
+  display_name: 연구 갭 분석
+  short_description: 선행연구와 비교해 연구 공백·차별성·기여 범위를 정리합니다
+  default_prompt: $research-gap-positioning 현재 방법을 가장 가까운 선행연구와 비교하고 방어 가능한 연구 공백,
+    novelty 위협 및 contribution 문장을 정리해줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

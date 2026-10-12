@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "default_project": "world-graph-aei",
+  "hub_page": null,
+  "sessions_data_source": null,
+  "decisions_data_source": null,
+  "projects": {
+    "world-graph-aei": {
+      "state_page": null,
+      "hub_page": null,
+      "literature_data_source": null
+    }
+  }
+}

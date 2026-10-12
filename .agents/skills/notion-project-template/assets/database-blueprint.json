@@ -1,0 +1,875 @@
+{
+  "databases": {
+    "Projects": {
+      "title": "Projects",
+      "title_property": "Project",
+      "schema": "CREATE TABLE (\"Project\" TITLE, \"Created\" CREATED_TIME, \"Last Updated\" LAST_EDITED_TIME, \"Owner\" PEOPLE, \"Start\" DATE, \"Status\" SELECT('Planning':gray, 'Active':blue, 'On Hold':yellow, 'Completed':green, 'Archived':brown), \"Target Date\" DATE)"
+    },
+    "Tasks": {
+      "title": "Tasks",
+      "title_property": "Task",
+      "schema": "CREATE TABLE (\"Task\" TITLE, \"Area\" SELECT('Planning':brown, 'Frontend':blue, 'Backend':green, 'Database':purple, 'AI':pink, 'Design':orange, 'Infra':gray, 'Business':yellow), \"Assignee\" PEOPLE, \"Created\" CREATED_TIME, \"Due Date\" DATE, \"Estimate\" NUMBER, \"GitHub\" URL, \"Last Updated\" LAST_EDITED_TIME, \"Priority\" SELECT('Critical':red, 'High':orange, 'Medium':yellow, 'Low':green), \"Start Date\" DATE, \"Status\" SELECT('Backlog':gray, 'Todo':default, 'In Progress':blue, 'Review':yellow, 'Done':green, 'Blocked':red), \"Type\" SELECT('Epic':purple, 'Feature':blue, 'Task':default, 'Bug':red, 'Research':green, 'Design':pink, 'Documentation':gray), \"ID\" UNIQUE_ID PREFIX 'TASK')"
+    },
+    "Sprints": {
+      "title": "Sprints",
+      "title_property": "Sprint",
+      "schema": "CREATE TABLE (\"Sprint\" TITLE, \"Created\" CREATED_TIME, \"End\" DATE, \"Goal\" RICH_TEXT, \"Last Updated\" LAST_EDITED_TIME, \"Start\" DATE, \"Status\" SELECT('Planning':gray, 'Active':blue, 'Completed':green, 'Cancelled':red))"
+    },
+    "Requirements": {
+      "title": "Requirements",
+      "title_property": "Requirement",
+      "schema": "CREATE TABLE (\"Requirement\" TITLE, \"Area\" MULTI_SELECT('Planning':brown, 'Frontend':blue, 'Backend':green, 'Database':purple, 'AI':pink, 'Design':orange, 'Infra':gray, 'Business':yellow), \"Created\" CREATED_TIME, \"Description\" RICH_TEXT, \"Last Updated\" LAST_EDITED_TIME, \"Owner\" PEOPLE, \"Priority\" SELECT('Critical':red, 'High':orange, 'Medium':yellow, 'Low':green), \"Status\" SELECT('Idea':gray, 'Review':yellow, 'Approved':blue, 'In Development':purple, 'Implemented':green, 'Rejected':red), \"Type\" SELECT('Idea':gray, 'Functional Requirement':blue, 'Non-functional Requirement':purple, 'Business Requirement':yellow, 'Technical Requirement':green), \"ID\" UNIQUE_ID PREFIX 'REQ')"
+    },
+    "Meetings": {
+      "title": "Meetings",
+      "title_property": "Meeting",
+      "schema": "CREATE TABLE (\"Meeting\" TITLE, \"Created\" CREATED_TIME, \"Date\" DATE, \"Last Updated\" LAST_EDITED_TIME, \"Participants\" PEOPLE, \"Summary\" RICH_TEXT, \"Type\" SELECT('Weekly':blue, 'Planning':yellow, 'Development':green, 'Design':pink, 'Review':purple, 'Ad hoc':orange, 'Template':gray))"
+    },
+    "Documents": {
+      "title": "Documents",
+      "title_property": "Document",
+      "schema": "CREATE TABLE (\"Document\" TITLE, \"Area\" MULTI_SELECT('Planning':brown, 'Frontend':blue, 'Backend':green, 'Database':purple, 'AI':pink, 'Design':orange, 'Infra':gray, 'Business':yellow, 'General':default), \"Category\" SELECT('Planning':brown, 'Requirement Spec':yellow, 'Architecture':blue, 'Frontend':blue, 'Backend':green, 'Database':purple, 'API':orange, 'QA':red, 'Version Control':gray, 'Deployment':green, 'Infrastructure':gray, 'AI Prompt':pink, 'AI Skill':purple, 'Design Guide':orange, 'Business':yellow, 'Research':blue, 'Guide':default), \"Created\" CREATED_TIME, \"Last Reviewed\" DATE, \"Last Updated\" LAST_EDITED_TIME, \"Owner\" PEOPLE, \"Status\" SELECT('Draft':gray, 'In Review':yellow, 'Approved':blue, 'Final':green, 'Deprecated':red), \"Version\" RICH_TEXT, \"ID\" UNIQUE_ID PREFIX 'DOC')"
+    },
+    "Resources": {
+      "title": "Resources",
+      "title_property": "Resource",
+      "schema": "CREATE TABLE (\"Resource\" TITLE, \"Added By\" PEOPLE, \"Added Date\" CREATED_TIME, \"Area\" MULTI_SELECT('Frontend':blue, 'Backend':green, 'Database':purple, 'AI':pink, 'DevOps':gray, 'Design':orange, 'Business':yellow, 'Planning':brown, 'General':default), \"Last Updated\" LAST_EDITED_TIME, \"Role\" SELECT('Workspace':blue, 'Reference':purple, 'Learning':green), \"Source\" RICH_TEXT, \"Status\" SELECT('Active':blue, 'To Read':gray, 'Reading':yellow, 'Reviewed':green, 'Important':red, 'Archived':brown), \"Summary\" RICH_TEXT, \"Topic\" MULTI_SELECT(), \"Type\" SELECT('GitHub':gray, 'Figma':pink, 'Swagger':green, 'ERD':purple, 'Diagram':blue, 'Server':orange, 'API':yellow, 'Notion':default, 'Drive':blue, 'Article':yellow, 'Blog':orange, 'Documentation':blue, 'Paper':purple, 'Book':brown, 'Course':green, 'Video':red, 'Repository':gray, 'Library / Framework':pink, 'Tool':default, 'Example Project':green, 'Reference':purple, 'Other':gray), \"URL\" URL)"
+    }
+  },
+  "options": {
+    "Projects": {
+      "Status": [
+        {
+          "color": "gray",
+          "name": "Planning"
+        },
+        {
+          "color": "blue",
+          "name": "Active"
+        },
+        {
+          "color": "yellow",
+          "name": "On Hold"
+        },
+        {
+          "color": "green",
+          "name": "Completed"
+        },
+        {
+          "color": "brown",
+          "name": "Archived"
+        }
+      ]
+    },
+    "Tasks": {
+      "Area": [
+        {
+          "color": "brown",
+          "name": "Planning"
+        },
+        {
+          "color": "blue",
+          "name": "Frontend"
+        },
+        {
+          "color": "green",
+          "name": "Backend"
+        },
+        {
+          "color": "purple",
+          "name": "Database"
+        },
+        {
+          "color": "pink",
+          "name": "AI"
+        },
+        {
+          "color": "orange",
+          "name": "Design"
+        },
+        {
+          "color": "gray",
+          "name": "Infra"
+        },
+        {
+          "color": "yellow",
+          "name": "Business"
+        }
+      ],
+      "Priority": [
+        {
+          "color": "red",
+          "name": "Critical"
+        },
+        {
+          "color": "orange",
+          "name": "High"
+        },
+        {
+          "color": "yellow",
+          "name": "Medium"
+        },
+        {
+          "color": "green",
+          "name": "Low"
+        }
+      ],
+      "Status": [
+        {
+          "color": "gray",
+          "name": "Backlog"
+        },
+        {
+          "color": "default",
+          "name": "Todo"
+        },
+        {
+          "color": "blue",
+          "name": "In Progress"
+        },
+        {
+          "color": "yellow",
+          "name": "Review"
+        },
+        {
+          "color": "green",
+          "name": "Done"
+        },
+        {
+          "color": "red",
+          "name": "Blocked"
+        }
+      ],
+      "Type": [
+        {
+          "color": "purple",
+          "name": "Epic"
+        },
+        {
+          "color": "blue",
+          "name": "Feature"
+        },
+        {
+          "color": "default",
+          "name": "Task"
+        },
+        {
+          "color": "red",
+          "name": "Bug"
+        },
+        {
+          "color": "green",
+          "name": "Research"
+        },
+        {
+          "color": "pink",
+          "name": "Design"
+        },
+        {
+          "color": "gray",
+          "name": "Documentation"
+        }
+      ]
+    },
+    "Sprints": {
+      "Status": [
+        {
+          "color": "gray",
+          "name": "Planning"
+        },
+        {
+          "color": "blue",
+          "name": "Active"
+        },
+        {
+          "color": "green",
+          "name": "Completed"
+        },
+        {
+          "color": "red",
+          "name": "Cancelled"
+        }
+      ]
+    },
+    "Requirements": {
+      "Area": [
+        {
+          "color": "brown",
+          "name": "Planning"
+        },
+        {
+          "color": "blue",
+          "name": "Frontend"
+        },
+        {
+          "color": "green",
+          "name": "Backend"
+        },
+        {
+          "color": "purple",
+          "name": "Database"
+        },
+        {
+          "color": "pink",
+          "name": "AI"
+        },
+        {
+          "color": "orange",
+          "name": "Design"
+        },
+        {
+          "color": "gray",
+          "name": "Infra"
+        },
+        {
+          "color": "yellow",
+          "name": "Business"
+        }
+      ],
+      "Priority": [
+        {
+          "color": "red",
+          "name": "Critical"
+        },
+        {
+          "color": "orange",
+          "name": "High"
+        },
+        {
+          "color": "yellow",
+          "name": "Medium"
+        },
+        {
+          "color": "green",
+          "name": "Low"
+        }
+      ],
+      "Status": [
+        {
+          "color": "gray",
+          "name": "Idea"
+        },
+        {
+          "color": "yellow",
+          "name": "Review"
+        },
+        {
+          "color": "blue",
+          "name": "Approved"
+        },
+        {
+          "color": "purple",
+          "name": "In Development"
+        },
+        {
+          "color": "green",
+          "name": "Implemented"
+        },
+        {
+          "color": "red",
+          "name": "Rejected"
+        }
+      ],
+      "Type": [
+        {
+          "color": "gray",
+          "name": "Idea"
+        },
+        {
+          "color": "blue",
+          "name": "Functional Requirement"
+        },
+        {
+          "color": "purple",
+          "name": "Non-functional Requirement"
+        },
+        {
+          "color": "yellow",
+          "name": "Business Requirement"
+        },
+        {
+          "color": "green",
+          "name": "Technical Requirement"
+        }
+      ]
+    },
+    "Meetings": {
+      "Type": [
+        {
+          "color": "blue",
+          "name": "Weekly"
+        },
+        {
+          "color": "yellow",
+          "name": "Planning"
+        },
+        {
+          "color": "green",
+          "name": "Development"
+        },
+        {
+          "color": "pink",
+          "name": "Design"
+        },
+        {
+          "color": "purple",
+          "name": "Review"
+        },
+        {
+          "color": "orange",
+          "name": "Ad hoc"
+        },
+        {
+          "color": "gray",
+          "name": "Template"
+        }
+      ]
+    },
+    "Documents": {
+      "Area": [
+        {
+          "color": "brown",
+          "name": "Planning"
+        },
+        {
+          "color": "blue",
+          "name": "Frontend"
+        },
+        {
+          "color": "green",
+          "name": "Backend"
+        },
+        {
+          "color": "purple",
+          "name": "Database"
+        },
+        {
+          "color": "pink",
+          "name": "AI"
+        },
+        {
+          "color": "orange",
+          "name": "Design"
+        },
+        {
+          "color": "gray",
+          "name": "Infra"
+        },
+        {
+          "color": "yellow",
+          "name": "Business"
+        },
+        {
+          "color": "default",
+          "name": "General"
+        }
+      ],
+      "Category": [
+        {
+          "color": "brown",
+          "name": "Planning"
+        },
+        {
+          "color": "yellow",
+          "name": "Requirement Spec"
+        },
+        {
+          "color": "blue",
+          "name": "Architecture"
+        },
+        {
+          "color": "blue",
+          "name": "Frontend"
+        },
+        {
+          "color": "green",
+          "name": "Backend"
+        },
+        {
+          "color": "purple",
+          "name": "Database"
+        },
+        {
+          "color": "orange",
+          "name": "API"
+        },
+        {
+          "color": "red",
+          "name": "QA"
+        },
+        {
+          "color": "gray",
+          "name": "Version Control"
+        },
+        {
+          "color": "green",
+          "name": "Deployment"
+        },
+        {
+          "color": "gray",
+          "name": "Infrastructure"
+        },
+        {
+          "color": "pink",
+          "name": "AI Prompt"
+        },
+        {
+          "color": "purple",
+          "name": "AI Skill"
+        },
+        {
+          "color": "orange",
+          "name": "Design Guide"
+        },
+        {
+          "color": "yellow",
+          "name": "Business"
+        },
+        {
+          "color": "blue",
+          "name": "Research"
+        },
+        {
+          "color": "default",
+          "name": "Guide"
+        }
+      ],
+      "Status": [
+        {
+          "color": "gray",
+          "name": "Draft"
+        },
+        {
+          "color": "yellow",
+          "name": "In Review"
+        },
+        {
+          "color": "blue",
+          "name": "Approved"
+        },
+        {
+          "color": "green",
+          "name": "Final"
+        },
+        {
+          "color": "red",
+          "name": "Deprecated"
+        }
+      ]
+    },
+    "Resources": {
+      "Area": [
+        {
+          "color": "blue",
+          "name": "Frontend"
+        },
+        {
+          "color": "green",
+          "name": "Backend"
+        },
+        {
+          "color": "purple",
+          "name": "Database"
+        },
+        {
+          "color": "pink",
+          "name": "AI"
+        },
+        {
+          "color": "gray",
+          "name": "DevOps"
+        },
+        {
+          "color": "orange",
+          "name": "Design"
+        },
+        {
+          "color": "yellow",
+          "name": "Business"
+        },
+        {
+          "color": "brown",
+          "name": "Planning"
+        },
+        {
+          "color": "default",
+          "name": "General"
+        }
+      ],
+      "Role": [
+        {
+          "color": "blue",
+          "name": "Workspace"
+        },
+        {
+          "color": "purple",
+          "name": "Reference"
+        },
+        {
+          "color": "green",
+          "name": "Learning"
+        }
+      ],
+      "Status": [
+        {
+          "color": "blue",
+          "name": "Active"
+        },
+        {
+          "color": "gray",
+          "name": "To Read"
+        },
+        {
+          "color": "yellow",
+          "name": "Reading"
+        },
+        {
+          "color": "green",
+          "name": "Reviewed"
+        },
+        {
+          "color": "red",
+          "name": "Important"
+        },
+        {
+          "color": "brown",
+          "name": "Archived"
+        }
+      ],
+      "Topic": [],
+      "Type": [
+        {
+          "color": "gray",
+          "name": "GitHub"
+        },
+        {
+          "color": "pink",
+          "name": "Figma"
+        },
+        {
+          "color": "green",
+          "name": "Swagger"
+        },
+        {
+          "color": "purple",
+          "name": "ERD"
+        },
+        {
+          "color": "blue",
+          "name": "Diagram"
+        },
+        {
+          "color": "orange",
+          "name": "Server"
+        },
+        {
+          "color": "yellow",
+          "name": "API"
+        },
+        {
+          "color": "default",
+          "name": "Notion"
+        },
+        {
+          "color": "blue",
+          "name": "Drive"
+        },
+        {
+          "color": "yellow",
+          "name": "Article"
+        },
+        {
+          "color": "orange",
+          "name": "Blog"
+        },
+        {
+          "color": "blue",
+          "name": "Documentation"
+        },
+        {
+          "color": "purple",
+          "name": "Paper"
+        },
+        {
+          "color": "brown",
+          "name": "Book"
+        },
+        {
+          "color": "green",
+          "name": "Course"
+        },
+        {
+          "color": "red",
+          "name": "Video"
+        },
+        {
+          "color": "gray",
+          "name": "Repository"
+        },
+        {
+          "color": "pink",
+          "name": "Library / Framework"
+        },
+        {
+          "color": "default",
+          "name": "Tool"
+        },
+        {
+          "color": "green",
+          "name": "Example Project"
+        },
+        {
+          "color": "purple",
+          "name": "Reference"
+        },
+        {
+          "color": "gray",
+          "name": "Other"
+        }
+      ]
+    }
+  },
+  "relations": [
+    {
+      "from": "Tasks",
+      "property": "Project",
+      "to": "Projects",
+      "inverse": "Tasks",
+      "statement": "ADD COLUMN \"Project\" RELATION('{{ds.Projects}}', DUAL 'Tasks')"
+    },
+    {
+      "from": "Tasks",
+      "property": "Sprint",
+      "to": "Sprints",
+      "inverse": "Tasks",
+      "statement": "ADD COLUMN \"Sprint\" RELATION('{{ds.Sprints}}', DUAL 'Tasks')"
+    },
+    {
+      "from": "Tasks",
+      "property": "Requirement",
+      "to": "Requirements",
+      "inverse": "Related Tasks",
+      "statement": "ADD COLUMN \"Requirement\" RELATION('{{ds.Requirements}}', DUAL 'Related Tasks')"
+    },
+    {
+      "from": "Tasks",
+      "property": "Origin Meeting",
+      "to": "Meetings",
+      "inverse": "Action Items",
+      "statement": "ADD COLUMN \"Origin Meeting\" RELATION('{{ds.Meetings}}', DUAL 'Action Items')"
+    },
+    {
+      "from": "Tasks",
+      "property": "Related Docs",
+      "to": "Documents",
+      "inverse": "Related Tasks",
+      "statement": "ADD COLUMN \"Related Docs\" RELATION('{{ds.Documents}}', DUAL 'Related Tasks')"
+    },
+    {
+      "from": "Tasks",
+      "property": "Parent Task",
+      "to": "Tasks",
+      "inverse": null,
+      "statement": "ADD COLUMN \"Parent Task\" RELATION('{{ds.Tasks}}')"
+    },
+    {
+      "from": "Requirements",
+      "property": "Project",
+      "to": "Projects",
+      "inverse": "Requirements",
+      "statement": "ADD COLUMN \"Project\" RELATION('{{ds.Projects}}', DUAL 'Requirements')"
+    },
+    {
+      "from": "Requirements",
+      "property": "Related Meetings",
+      "to": "Meetings",
+      "inverse": "Requirements",
+      "statement": "ADD COLUMN \"Related Meetings\" RELATION('{{ds.Meetings}}', DUAL 'Requirements')"
+    },
+    {
+      "from": "Requirements",
+      "property": "Related Docs",
+      "to": "Documents",
+      "inverse": "Requirements",
+      "statement": "ADD COLUMN \"Related Docs\" RELATION('{{ds.Documents}}', DUAL 'Requirements')"
+    },
+    {
+      "from": "Meetings",
+      "property": "Project",
+      "to": "Projects",
+      "inverse": "Meetings",
+      "statement": "ADD COLUMN \"Project\" RELATION('{{ds.Projects}}', DUAL 'Meetings')"
+    },
+    {
+      "from": "Meetings",
+      "property": "Documents",
+      "to": "Documents",
+      "inverse": "Meetings",
+      "statement": "ADD COLUMN \"Documents\" RELATION('{{ds.Documents}}', DUAL 'Meetings')"
+    },
+    {
+      "from": "Documents",
+      "property": "Project",
+      "to": "Projects",
+      "inverse": "Documents",
+      "statement": "ADD COLUMN \"Project\" RELATION('{{ds.Projects}}', DUAL 'Documents')"
+    },
+    {
+      "from": "Resources",
+      "property": "Project",
+      "to": "Projects",
+      "inverse": "Resources",
+      "statement": "ADD COLUMN \"Project\" RELATION('{{ds.Projects}}', DUAL 'Resources')"
+    },
+    {
+      "from": "Resources",
+      "property": "Related Requirements",
+      "to": "Requirements",
+      "inverse": "Reference Materials",
+      "statement": "ADD COLUMN \"Related Requirements\" RELATION('{{ds.Requirements}}', DUAL 'Reference Materials')"
+    },
+    {
+      "from": "Resources",
+      "property": "Related Tasks",
+      "to": "Tasks",
+      "inverse": "Reference Materials",
+      "statement": "ADD COLUMN \"Related Tasks\" RELATION('{{ds.Tasks}}', DUAL 'Reference Materials')"
+    },
+    {
+      "from": "Resources",
+      "property": "Related Documents",
+      "to": "Documents",
+      "inverse": "Reference Materials",
+      "statement": "ADD COLUMN \"Related Documents\" RELATION('{{ds.Documents}}', DUAL 'Reference Materials')"
+    },
+    {
+      "from": "Sprints",
+      "property": "Project",
+      "to": "Projects",
+      "inverse": "Sprints",
+      "statement": "ADD COLUMN \"Project\" RELATION('{{ds.Projects}}', DUAL 'Sprints')"
+    }
+  ],
+  "formulas": [
+    {
+      "database": "Tasks",
+      "property": "Completed",
+      "expression": "prop(\"Status\") == \"Done\"",
+      "statement": "ADD COLUMN \"Completed\" FORMULA('prop(\"Status\") == \"Done\"')"
+    }
+  ],
+  "rollups": [
+    {
+      "database": "Projects",
+      "property": "Task Count",
+      "relation": "Tasks",
+      "target": "Task",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Task Count\" ROLLUP('Tasks', 'Task', 'count')"
+    },
+    {
+      "database": "Projects",
+      "property": "Requirement Count",
+      "relation": "Requirements",
+      "target": "Requirement",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Requirement Count\" ROLLUP('Requirements', 'Requirement', 'count')"
+    },
+    {
+      "database": "Projects",
+      "property": "Sprint Count",
+      "relation": "Sprints",
+      "target": "Sprint",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Sprint Count\" ROLLUP('Sprints', 'Sprint', 'count')"
+    },
+    {
+      "database": "Projects",
+      "property": "Meeting Count",
+      "relation": "Meetings",
+      "target": "Meeting",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Meeting Count\" ROLLUP('Meetings', 'Meeting', 'count')"
+    },
+    {
+      "database": "Projects",
+      "property": "Document Count",
+      "relation": "Documents",
+      "target": "Document",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Document Count\" ROLLUP('Documents', 'Document', 'count')"
+    },
+    {
+      "database": "Projects",
+      "property": "Resource Count",
+      "relation": "Resources",
+      "target": "Resource",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Resource Count\" ROLLUP('Resources', 'Resource', 'count')"
+    },
+    {
+      "database": "Projects",
+      "property": "Progress",
+      "relation": "Tasks",
+      "target": "Completed",
+      "aggregation": "percent_checked",
+      "statement": "ADD COLUMN \"Progress\" ROLLUP('Tasks', 'Completed', 'percent_checked')"
+    },
+    {
+      "database": "Sprints",
+      "property": "Task Count",
+      "relation": "Tasks",
+      "target": "Task",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Task Count\" ROLLUP('Tasks', 'Task', 'count')"
+    },
+    {
+      "database": "Sprints",
+      "property": "Progress",
+      "relation": "Tasks",
+      "target": "Completed",
+      "aggregation": "percent_checked",
+      "statement": "ADD COLUMN \"Progress\" ROLLUP('Tasks', 'Completed', 'percent_checked')"
+    },
+    {
+      "database": "Requirements",
+      "property": "Task Count",
+      "relation": "Related Tasks",
+      "target": "Task",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Task Count\" ROLLUP('Related Tasks', 'Task', 'count')"
+    },
+    {
+      "database": "Meetings",
+      "property": "Action Count",
+      "relation": "Action Items",
+      "target": "Task",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Action Count\" ROLLUP('Action Items', 'Task', 'count')"
+    },
+    {
+      "database": "Documents",
+      "property": "Task Count",
+      "relation": "Related Tasks",
+      "target": "Task",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Task Count\" ROLLUP('Related Tasks', 'Task', 'count')"
+    },
+    {
+      "database": "Documents",
+      "property": "Reference Count",
+      "relation": "Reference Materials",
+      "target": "Resource",
+      "aggregation": "count",
+      "statement": "ADD COLUMN \"Reference Count\" ROLLUP('Reference Materials', 'Resource', 'count')"
+    }
+  ],
+  "project_record": {
+    "database": "Projects",
+    "properties": {
+      "Project": "{{project_name}}",
+      "Status": "{{project_status}}"
+    },
+    "icon": "🚀"
+  }
+}

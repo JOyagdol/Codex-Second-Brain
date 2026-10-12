@@ -1,0 +1,14 @@
+interface:
+  display_name: 논문 작성
+  short_description: 연구 근거를 논문 구조와 문장으로 연결하고 과도한 주장을 점검합니다
+  default_prompt: $paper-architect-scientific-writer 제공한 연구 근거로 논문 구조를 설계하고 contribution과
+    실험의 연결 및 과도한 주장을 점검해줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

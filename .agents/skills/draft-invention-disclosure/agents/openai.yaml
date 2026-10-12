@@ -1,0 +1,14 @@
+interface:
+  display_name: 발명신고서 작성 파트너
+  short_description: 근거 기반 발명신고서 작성과 핵심 구성·도면·구현 대응 검토
+  default_prompt: $draft-invention-disclosure를 사용해 제공한 자료에서 발명의 핵심을 정리하고 발명신고서와 도면
+    초안을 작성해줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

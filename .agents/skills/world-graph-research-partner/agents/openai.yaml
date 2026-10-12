@@ -1,0 +1,14 @@
+interface:
+  display_name: World Graph 공동연구자 · Research Second Brain
+  short_description: 연구 방향·설계·결과·원고·리뷰를 연결하고 전문 검토를 종합하는 공동연구자
+  default_prompt: $world-graph-research-partner 현재 연구 맥락과 근거를 바탕으로 필요한 전문 스킬을 선택해
+    교차 검토하고, 잠정 판단·변경 조건·다음 행동을 정리해줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

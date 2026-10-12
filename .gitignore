@@ -1,0 +1,15 @@
+# Personal memory and host-specific files
+private/
+config/*.local.json
+**/memory-registry.local.json
+**/archive/
+.state/
+.second-brain/
+dist/
+*.zip
+.env
+.env.*
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

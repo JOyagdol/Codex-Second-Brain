@@ -1,0 +1,14 @@
+interface:
+  display_name: 실험 설계
+  short_description: 가설·비교군·제거 실험을 설계하고 결과의 해석 범위를 평가합니다
+  default_prompt: $experiment-designer-evaluator 현재 연구의 핵심 가설을 검증할 최소 실험과 baseline,
+    ablation, metric 및 실패 해석을 설계해줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: Notion 프로젝트 템플릿
+  short_description: 7개 연결 DB와 메뉴·보드·운영 가이드로 Notion 프로젝트 허브 구성
+  default_prompt: $notion-project-template 스킬을 사용해 지정한 Notion 페이지에 프로젝트 허브를 만들어줘.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
